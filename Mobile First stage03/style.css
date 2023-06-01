@@ -5,18 +5,18 @@
 }
 
 :root{
-  --ff-heading: 'Staatliches';
-  --ff-texting: 'Palanquin';
+  --ff-heading: 'Staatliches', sans-serif;
+  --ff-texting: 'Palanquin', sans-serif;
 
 
-  --hue:300;
+  --hue: 300;
   --bg-header:hsla(var(--hue), 17%, 62%);
-  --bg-heading: hsla(var(--hue), 18%, 79%);
-  --bg-primary: hsla(var(--hue), 100%, 97%);
+  --bg-heading: hsla(var(--hue), 60%, 79%);
+  --bg-primary: hsla(var(--hue), 100%, 98%);
 
-  --fc-primary: hsla(274, 84%, 12%, 1);
-  --fc-header: #ffffff;
-
+  --fc-primary: hsla(274, 84%, 12%, 100);
+  --fc-header: #ffffffe9;
+  --fc-footer: #4A4E69;
 
   font-size: 62,5%;
   --fs-header: clamp(4rem, 1rem + 5vw, 5.6rem);
@@ -33,11 +33,9 @@ body{
 }
 
 .page{
-  padding: 1.4rem 3.2rem 6rem 3.2rem;
- 
+  /* padding: 2rem; */
+  /* max-width: 1150px; */
   margin: 0 auto;
-  animation: topdown 700ms;
-  
 }
 
 header {
@@ -47,7 +45,11 @@ header {
   align-items: center;
   width: 100%;
   background-color: var(--bg-header);
-  padding-bottom: 2.9rem;
+  padding: 3.2rem 0 2.9rem;
+}
+
+header img{
+  padding-bottom: 3rem;
 }
 
 h1{
@@ -61,24 +63,35 @@ h1{
   font-weight: 400;
   line-height: 3.4rem;
 }
-.card{
+
+#images{
+  display: flex;
+  flex-direction: column;
+  padding: 0 3.2rem;
+}
+
+#images p{
+  display: none;
+}
+
+#card{
   position: relative;
   font-family: var(--ff-texting);
-  
+  animation: topdown 2s;
 }
-.card img{
+#card img{
   width: 100%;
   margin-bottom: 3.2rem;
 
 }
 
-.card img:hover{
+#card img:hover{
   transform: scale(1.1);
   opacity: 0.85;
   filter: none;
 }
 
-.card h2{
+#card h2{
   position: absolute;
   font-style: var(--fs-body);
   top: 1.6rem;
@@ -89,7 +102,7 @@ h1{
   text-transform: uppercase;
 }
 
-.card h2 span{
+#card h2 span{
   border-radius: 2rem;
   background-color: var(--bg-primary);
   padding: 0 1.6rem;
@@ -103,50 +116,81 @@ h1{
 p{
   font-family: var(--ff-texting);
   line-height: 1.5rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   align-items: center;
   font-weight: 400;
   display: flex;
   text-align: center;
+  padding: 1.4rem 3.2rem 0; 
 
 }
 
-@media (max-width: 638px)
+
+
+@keyframes topdown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+      
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+}
+
+.desktop{
+  display: none;
+}
+
+@media (min-width: 640px)
 {
   :root{
     padding: 0;
   }
-  .page{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+
+.page{
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 1440px;
+}  
+
+aside{
+  grid-area: a;
+  display: flex;
+  flex-direction: column;
+}
+
+aside h1{
+  color: var(--fc-header);
+  font-style: var(--fs-header);
+  font-weight: bold;
 }
 
 
+.desktop{
+  padding: 6.4rem 8.1rem 1rem 7rem;
+  display: block;
+}
 
 
-@media (min-width: 640px)
-{
-  .page{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    max-width: 1200px;
-    padding-top: 1.4rem;
-  }
-  p{
-    width: 27rem;
-    font-size: 25px;
-    text-transform: uppercase;
-    padding-right: 4rem;
-  }
-  main {
-    display: flex;
-  }
-  .card img{
-    margin-bottom: 0rem;
-  }
+#images{
+  display: none;
+}
+
+
+aside{
+  background-color: var(--bg-header);
+}
+
+aside p{
+  display: flex;
+  padding: 0rem 4.8rem 0rem 5.4rem;
+  font-family: var(--ff-texting);
+  font-size: clamp(1rem, 1.2rem + 1vw, 1.5rem);
+}
 
 h1{
   font-size: 40px;
@@ -156,41 +200,69 @@ h1{
   color:hsla(274, 84%, 12%, 1)
 }
 
-  .images{
+  #container{
     display: grid;
+    grid-template-areas: 
+    "A B C "
+    "D B E "
+    "D F E";
     gap: 1.9rem;
-    grid-template-areas: "A A B "
-    "C C D";
   }
 
-  .images div:nth-child(1) {
+  #icecream img{
+    border: none;
+    width: 250px;
+    animation: slide 2s;
+    transition: 1s;
+  }
+
+  #container div:nth-child(1) {
     grid-area: A;
   }
  
-  .images div:nth-child(2) {
+  #container div:nth-child(2) {
     grid-area: B;
   }
 
-  .images div:nth-child(3){
+  #container div:nth-child(3){
     grid-area: C;
   }
 
-  .images div:nth-child(4){
+  #container div:nth-child(4){
     grid-area: D;
   }
-
-}
-
-
-@keyframes topdown {
-  0% {
-    opacity: 0;
-    transform: translateY(-15px);
+  
+  #container div:nth-child(5){
+    grid-area: F;
   }
-      
-  100%{
-    opacity: 1;
-    transform: translateY(0);
-    
-}
+
+  #container div:nth-child(6){
+    grid-area: E;
+  }
+
+  .desktop footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5rem;
+  }
+
+  .desktop footer a{
+    text-decoration: none;
+    color: var(--fc-footer);
+  }
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+        
+    100%{
+      opacity: 1;
+      transform: translateX(0);
+  }
+  
+  }
+  
+  
 }
